@@ -11,7 +11,5 @@ public class Blog {
         entries = new ArrayList<>();
     }
 
-    public List<BlogEntry> getEntries() {
-        return entries;
-    }
+    public List<BlogEntry> getEntries() { return entries; }
 }
