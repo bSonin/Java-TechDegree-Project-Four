@@ -8,21 +8,18 @@ public class BlogEntry {
     private Long id;
     private List<Comment> comments;
     private List<Tag> tags;
-    private Blog blog;
     private String title;
     private String body;
+    private String summary;
     private LocalDateTime creationDate;
 
-    public BlogEntry(Blog blog) {
-        initialize();
-        this.blog = blog;
-    }
 
-    public BlogEntry(Blog blog, String title, String body) {
+    public BlogEntry(String title, String body, String summary) {
         initialize();
-        this.blog = blog;
         this.title = title;
         this.body = body;
+        this.summary = summary;
+        //TODO:bhs - Limit length of fields, particularly summary
     }
 
     private void initialize() {
@@ -33,6 +30,9 @@ public class BlogEntry {
 
     public Long getId() { return id; }
 
+    // FIXME:bhs - Not the safest to provide mutability to ID this way
+
+    public void setId(Long id) { this.id = id; }
     public List<Tag> getTags() {
         return tags;
     }
@@ -49,23 +49,27 @@ public class BlogEntry {
         this.comments = comments;
     }
 
-    public Blog getBlog() {
-        return blog;
-    }
-
     public String getBody() { return body; }
 
     public void setBody(String body) { this.body = body; }
-
-    public void setBlog(Blog blog) {
-        this.blog = blog;
-    }
 
     public String getTitle() { return title; }
 
     public void setTitle(String title) { this.title = title; }
 
     public LocalDateTime getCreationDate() { return creationDate; }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
 
 
     //TODO:bhs - Equals and HashCode?

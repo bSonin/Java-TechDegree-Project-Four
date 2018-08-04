@@ -1,5 +1,14 @@
 {{#partial "content"}}
-    <h1>This is my blog!</h1>
+    <h1>Current Blog Posts:</h1>
+    <ul>
+        {{#each blogEntries}}
+            <li>
+                <a>{{title}}: {{summary}}</a>
+            </li>
+        {{/each}}
+    </ul>
+    <br/>
+    <h3><a href="/new">Create a new post</a></h3>
 
 {{/partial}}
 {{> base.hbs}}

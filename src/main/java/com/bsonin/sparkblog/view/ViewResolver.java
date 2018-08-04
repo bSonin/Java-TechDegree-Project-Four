@@ -22,4 +22,9 @@ public class ViewResolver {
         // TODO:bhs - Fill in
         return new HandlebarsTemplateEngine().render(new ModelAndView(model, template));
     }
+
+    public static String prepareDetailView(Request req, Map model, String template) {
+        // TODO:bhs - Fill in
+        return new HandlebarsTemplateEngine().render(new ModelAndView(model, template));
+    }
 }

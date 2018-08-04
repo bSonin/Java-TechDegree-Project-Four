@@ -1,6 +1,7 @@
 package com.bsonin.sparkblog.dao.impl;
 
 import com.bsonin.sparkblog.dao.BlogEntryDao;
+import com.bsonin.sparkblog.model.Blog;
 import com.bsonin.sparkblog.model.BlogEntry;
 
 import java.util.ArrayList;
@@ -10,14 +11,20 @@ public class BlogEntryDaoInMemoryImpl implements BlogEntryDao {
     private List<BlogEntry> entries;
     private long autoIncrement;
 
-    public BlogEntryDaoInMemoryImpl(List<BlogEntry> entries) {
-        this.entries = entries;
+    public BlogEntryDaoInMemoryImpl(Blog blog) {
+        this.entries = blog.getEntries();
         autoIncrement = 0;
     }
 
     public boolean add(BlogEntry entry) {
-        ++autoIncrement;
-        return entries.add(entry);
+        boolean success = entries.add(entry);
+        if (success)
+        {
+            entry.setId(autoIncrement);
+            ++autoIncrement;
+        }
+        return success;
+
     }
 
     public List<BlogEntry> findAll() {
