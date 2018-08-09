@@ -1,5 +1,7 @@
 package com.bsonin.sparkblog.model;
 
+import com.github.slugify.Slugify;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +15,16 @@ public class BlogEntry {
     private String summary;
     private LocalDateTime creationDate;
 
+    private final String slug;
+
 
     public BlogEntry(String title, String body, String summary) {
         initialize();
         this.title = title;
         this.body = body;
         this.summary = summary;
+        Slugify slugify = new Slugify();
+        this.slug = slugify.slugify(title);
         //TODO:bhs - Limit length of fields, particularly summary
     }
 
@@ -26,7 +32,10 @@ public class BlogEntry {
         comments = new ArrayList<>();
         tags = new ArrayList<>();
         creationDate = LocalDateTime.now();
+
     }
+
+    public String getSlug() { return slug; }
 
     public Long getId() { return id; }
 

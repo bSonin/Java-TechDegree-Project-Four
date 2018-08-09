@@ -7,7 +7,6 @@ import com.bsonin.sparkblog.service.BlogEntryService;
 import com.bsonin.sparkblog.view.ViewResolver;
 import spark.Request;
 import spark.Response;
-import spark.Route;
 
 import java.util.HashMap;
 import java.util.Map;
