@@ -26,7 +26,16 @@ public class BlogEntryDaoInMemoryImpl implements BlogEntryDao {
             ++autoIncrement;
         }
         return success;
+    }
 
+    @Override
+    public boolean addAll(List<BlogEntry> entries) {
+        for (BlogEntry entry : entries)
+        {
+            boolean success = add(entry);
+            if (!success) return false; 
+        }
+        return true;
     }
 
     public List<BlogEntry> findAll() {

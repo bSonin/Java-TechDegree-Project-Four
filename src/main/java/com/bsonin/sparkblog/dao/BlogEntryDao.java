@@ -7,6 +7,8 @@ import java.util.List;
 public interface BlogEntryDao {
     public boolean add(BlogEntry entry);
 
+    public boolean addAll(List<BlogEntry> entries);
+
     public List<BlogEntry> findAll();
 
     public BlogEntry findFirstMatchByTitle(String title);

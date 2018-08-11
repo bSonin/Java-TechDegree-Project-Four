@@ -1,3 +1,4 @@
+import com.bsonin.sparkblog.service.TestingService;
 import com.bsonin.sparkblog.utils.Utils;
 import com.bsonin.sparkblog.controller.BlogController;
 import com.bsonin.sparkblog.dao.BlogEntryDao;
@@ -21,7 +22,9 @@ public class Application {
         // Setup some objects
         Blog blog = new Blog();
         BlogEntryDao blogEntryDao = new BlogEntryDaoInMemoryImpl(blog);
+        blogEntryDao.addAll(TestingService.getTestBlogEntries());
         BlogController blogController = new BlogController(blogEntryDao);
+
 
         // Define global before-filters
 
