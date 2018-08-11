@@ -24,4 +24,7 @@ public class BlogEntryService {
         return blogEntryDao.findAll();
     }
 
+    public BlogEntry getEntryBySlug(String slug) {
+        return blogEntryDao.findBySlug(slug);
+    }
 }

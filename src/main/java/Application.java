@@ -1,4 +1,4 @@
-import com.bsonin.sparkblog.Utils;
+import com.bsonin.sparkblog.utils.Utils;
 import com.bsonin.sparkblog.controller.BlogController;
 import com.bsonin.sparkblog.dao.BlogEntryDao;
 import com.bsonin.sparkblog.dao.impl.BlogEntryDaoInMemoryImpl;

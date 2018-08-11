@@ -14,7 +14,6 @@ public class BlogEntry {
     private String body;
     private String summary;
     private LocalDateTime creationDate;
-
     private final String slug;
 
 
@@ -26,6 +25,7 @@ public class BlogEntry {
         Slugify slugify = new Slugify();
         this.slug = slugify.slugify(title);
         //TODO:bhs - Limit length of fields, particularly summary
+        //TODO:bhs - Title will need to be unique for slug!
     }
 
     private void initialize() {

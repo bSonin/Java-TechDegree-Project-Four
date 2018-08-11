@@ -12,4 +12,6 @@ public interface BlogEntryDao {
     public BlogEntry findFirstMatchByTitle(String title);
 
     public BlogEntry findById(Long id);
+
+    public BlogEntry findBySlug(String slug);
 }

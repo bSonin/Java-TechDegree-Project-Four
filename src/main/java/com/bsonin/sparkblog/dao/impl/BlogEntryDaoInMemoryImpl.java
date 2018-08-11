@@ -1,6 +1,7 @@
 package com.bsonin.sparkblog.dao.impl;
 
 import com.bsonin.sparkblog.dao.BlogEntryDao;
+import com.bsonin.sparkblog.exception.NotFoundException;
 import com.bsonin.sparkblog.model.Blog;
 import com.bsonin.sparkblog.model.BlogEntry;
 
@@ -11,6 +12,7 @@ public class BlogEntryDaoInMemoryImpl implements BlogEntryDao {
     private List<BlogEntry> entries;
     private long autoIncrement;
 
+    // TODO:bhs - Consider all methods - what to return when something not found?
     public BlogEntryDaoInMemoryImpl(Blog blog) {
         this.entries = blog.getEntries();
         autoIncrement = 0;
@@ -47,5 +49,14 @@ public class BlogEntryDaoInMemoryImpl implements BlogEntryDao {
             }
         }
         return null;
+    }
+
+    @Override
+    public BlogEntry findBySlug(String slug) {
+        //TODO:bhs - Read more about how streams work here!
+        return entries.stream()
+                .filter(entry -> entry.getSlug().equalsIgnoreCase(slug))
+                .findFirst()
+                .orElseThrow(NotFoundException::new);
     }
 }
