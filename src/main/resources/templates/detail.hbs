@@ -1,6 +1,24 @@
 {{#partial "content"}}
     <h1>{{entry.title}}</h1>
     <h2>{{entry.summary}}</h2>
+
+    <ul>
+        {{#each entry.comments}}
+            <li>
+                <p>{{body}} - {{userName}} ({{creationDate}})</p>
+            </li>
+        {{/each}}
+    </ul>
+
+    <form action="/detail/{{entry.slug}}" method="post">
+        <input type="text" placeholder="Username" name="userName">
+        <input type="text" placeholder="Comment" name="body">
+        <button>Add Comment</button>
+    </form>
+
+    <form action="/index" method="get">
+        <button>Return to Homepage</button>
+    </form>
 {{/partial}}
 
 {{> base.hbs}}

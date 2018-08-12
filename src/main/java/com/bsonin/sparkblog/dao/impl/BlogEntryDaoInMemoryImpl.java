@@ -33,7 +33,7 @@ public class BlogEntryDaoInMemoryImpl implements BlogEntryDao {
         for (BlogEntry entry : entries)
         {
             boolean success = add(entry);
-            if (!success) return false; 
+            if (!success) return false;
         }
         return true;
     }

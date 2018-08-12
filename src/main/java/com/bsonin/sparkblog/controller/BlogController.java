@@ -1,5 +1,6 @@
 package com.bsonin.sparkblog.controller;
 
+import com.bsonin.sparkblog.model.Comment;
 import com.bsonin.sparkblog.utils.Utils;
 import com.bsonin.sparkblog.dao.BlogEntryDao;
 import com.bsonin.sparkblog.model.BlogEntry;
@@ -33,6 +34,15 @@ public class BlogController {
         Map<String, Object> model = new HashMap<>();
         model.put("entry", blogEntryService.getEntryBySlug(req.params("slug")));
         return ViewResolver.prepareDetailView(req, model, Utils.TEMPLATE_DETAIL);
+    }
+
+    public String handleDetailPostRequest(Request req, Response res) {
+        String username = req.queryParams("userName");
+        String commentBody = req.queryParams("body");
+        BlogEntry entry = blogEntryService.getEntryBySlug(req.params("slug"));
+        entry.getComments().add(new Comment(entry, username, commentBody));
+        res.redirect(Utils.ROUTE_DETAIL_PREFIX + "/" + entry.getSlug());
+        return null;
     }
 
     public String handleNewPostRequest(Request req, Response res) {
