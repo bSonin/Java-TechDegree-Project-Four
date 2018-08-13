@@ -1,5 +1,7 @@
 package com.bsonin.sparkblog.utils;
 
+import spark.Request;
+
 public class Utils {
 
     // Routes
@@ -14,5 +16,31 @@ public class Utils {
     public static final String TEMPLATE_EDIT = "edit.hbs";
     public static final String TEMPLATE_NEW = "new.hbs";
     public static final String TEMPLATE_DETAIL = "detail.hbs";
+
+    // Keys
+    public static final String FLASH_MESSAGE_KEY = "flash_message";
+
+    // Utility Methods
+    public static void setFlashMessage(Request req, String message) {
+        req.session().attribute("FLASH_MESSAGE_KEY, message");
+    }
+
+    public static String getFlashMessage(Request req) {
+        if (req.session(false) == null) {
+            return null;
+        }
+        if (!req.session().attributes().contains(FLASH_MESSAGE_KEY)) {
+            return null;
+        }
+        return (String) req.session().attribute(FLASH_MESSAGE_KEY);
+    }
+
+    public static String captureFlashMessage(Request req) {
+        String message = getFlashMessage(req);
+        if (message != null) {
+            req.session().removeAttribute(FLASH_MESSAGE_KEY);
+        }
+        return message;
+    }
 
 }

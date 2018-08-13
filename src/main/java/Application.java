@@ -26,7 +26,8 @@ public class Application {
         BlogController blogController = new BlogController(blogEntryDao);
 
 
-        // Define global before-filters
+        // Define before-filters
+        before (Utils.ROUTE_NEW, (req, res) -> blogController.beforeHandleNewGetRequest(req, res));
 
         // Define routes
         // FIXME:bhs - Need more research into why/how this is working!
@@ -36,18 +37,20 @@ public class Application {
         get(Utils.ROUTE_DETAIL, (req, res) -> blogController.handleDetailGetRequest(req, res));
         post(Utils.ROUTE_DETAIL, (req, res) -> blogController.handleDetailPostRequest(req, res));
 
-        // Define global after-filters
+        // Define after-filters
 
     }
 }
 
 // STEPS FORWARD:
-// Need to setup before/after filters
-// Need to setup the elementary admin permissions
-// Need to set up error checking, exception handling throughout
-//     -> (e.g. no post same title, or can't find slug in lookup)
-// Need to style everything, and trick out the header/footer of base.hbs
-// Need to add support for tags
-// Need to flesh out date/time support
-// Need to add CRUD to blog entries (need edit/delete)
-// Need to add cookie support
+// TODO:bhs - Add form to login.hbs
+// TODO:bhs - Add support for flash messages in base.hbs
+// TODO:bhs - Study and double check Utils flash message code
+// TODO:bhs - Add login routes, buff up the corresponding before filter
+// TODO:bhs - Set cookie on login, add corresponding filter to check for cookie
+// TODO:bhs   -> on other requests to edit/delete/add
+// TODO:bhs - Add in links for editing/delete posts
+// TODO:bhs - Expand before filter to cover these pages as well
+// TODO:bhs - Styling, tagging, messaging/error handling and anything else
+// TODO:bhs   -> in the requirements
+

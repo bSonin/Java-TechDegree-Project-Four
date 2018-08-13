@@ -27,4 +27,6 @@ public class BlogEntryService {
     public BlogEntry getEntryBySlug(String slug) {
         return blogEntryDao.findBySlug(slug);
     }
+
+    public void delete(BlogEntry entry) { blogEntryDao.delete(entry); }
 }

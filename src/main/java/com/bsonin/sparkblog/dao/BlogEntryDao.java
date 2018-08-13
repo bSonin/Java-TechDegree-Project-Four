@@ -5,15 +5,15 @@ import com.bsonin.sparkblog.model.BlogEntry;
 import java.util.List;
 
 public interface BlogEntryDao {
-    public boolean add(BlogEntry entry);
+    boolean add(BlogEntry entry);
 
-    public boolean addAll(List<BlogEntry> entries);
+    boolean addAll(List<BlogEntry> entries);
 
-    public List<BlogEntry> findAll();
+    List<BlogEntry> findAll();
 
-    public BlogEntry findFirstMatchByTitle(String title);
+    BlogEntry findById(Long id);
 
-    public BlogEntry findById(Long id);
+    BlogEntry findBySlug(String slug);
 
-    public BlogEntry findBySlug(String slug);
+    boolean delete(BlogEntry entry);
 }

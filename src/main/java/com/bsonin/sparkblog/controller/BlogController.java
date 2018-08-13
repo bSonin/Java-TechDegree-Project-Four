@@ -12,6 +12,8 @@ import spark.Response;
 import java.util.HashMap;
 import java.util.Map;
 
+import static spark.Spark.halt;
+
 public class BlogController {
     private BlogEntryService blogEntryService;
 
@@ -50,5 +52,15 @@ public class BlogController {
         blogEntryService.addEntry(entry);
         res.redirect(Utils.ROUTE_INDEX);
         return null;
+    }
+
+    public void beforeHandleNewGetRequest(Request req, Response res) {
+        if (req.cookie("userPass") == null ||
+                !req.cookie("userPass").equalsIgnoreCase("admin")) {
+            Utils.setFlashMessage(req, "Please login with the correct permission to add a post!");
+            res.redirect("/login");
+            halt();
+            return;
+        }
     }
 }
