@@ -1,3 +1,12 @@
 {{#partial "content"}}
+    <h1>Enter Your Username</h1>
+    <h4>If you'd like to be able to edit, add or delete posts, user the following password: {{password}}</h4>
+    <form action="{{routLogin}}" method="post">
+        <input type="text" placeholder="Enter a username" name="username">
+    </form>
+
+    <button>
+        <a href="{{routeIndex}}">Back to Index</a>
+    </button>
 {{/partial}}
 {{> base.hbs }}

@@ -29,13 +29,17 @@ public class Application {
         // Define before-filters
         before (Utils.ROUTE_NEW, (req, res) -> blogController.beforeHandleNewGetRequest(req, res));
 
-        // Define routes
         // FIXME:bhs - Need more research into why/how this is working!
+        // Define routes: GET
         get(Utils.ROUTE_INDEX, (req, res) -> blogController.handleIndexGetRequest(req, res));
         get(Utils.ROUTE_NEW, (req, res) -> blogController.handleNewGetRequest(req, res));
-        post(Utils.ROUTE_NEW, (req, res) -> blogController.handleNewPostRequest(req, res));
         get(Utils.ROUTE_DETAIL, (req, res) -> blogController.handleDetailGetRequest(req, res));
+        get(Utils.ROUTE_LOGIN, (req, res) -> blogController.handleLoginGetRequest(req, res));
+
+        // Define routes: POST
+        post(Utils.ROUTE_NEW, (req, res) -> blogController.handleNewPostRequest(req, res));
         post(Utils.ROUTE_DETAIL, (req, res) -> blogController.handleDetailPostRequest(req, res));
+        post(Utils.ROUTE_LOGIN, (req, res) -> blogController.handleLoginPostRequest(req, res));
 
         // Define after-filters
 
@@ -43,12 +47,9 @@ public class Application {
 }
 
 // STEPS FORWARD:
-// TODO:bhs - Add form to login.hbs
 // TODO:bhs - Add support for flash messages in base.hbs
 // TODO:bhs - Study and double check Utils flash message code
-// TODO:bhs - Add login routes, buff up the corresponding before filter
-// TODO:bhs - Set cookie on login, add corresponding filter to check for cookie
-// TODO:bhs   -> on other requests to edit/delete/add
+// TODO:bhs   Generalize cookie check for all necessary requests (edit/delete/add)
 // TODO:bhs - Add in links for editing/delete posts
 // TODO:bhs - Expand before filter to cover these pages as well
 // TODO:bhs - Styling, tagging, messaging/error handling and anything else

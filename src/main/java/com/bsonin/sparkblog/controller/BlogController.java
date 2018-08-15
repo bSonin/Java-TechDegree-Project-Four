@@ -54,11 +54,35 @@ public class BlogController {
         return null;
     }
 
+    public String handleLoginGetRequest(Request req, Response res) {
+        Map<String, Object> model = new HashMap<>();
+        model.put("password", Utils.SITE_PASSWORD);
+        model.put("routeIndex", Utils.ROUTE_INDEX);
+        model.put("routeLogin", Utils.ROUTE_LOGIN);
+        return ViewResolver.prepareLoginView(req, model, Utils.TEMPLATE_LOGIN);
+    }
+
+    public String handleLoginPostRequest(Request req, Response res) {
+        String username = req.queryParams("username");
+
+        if (username == null || !Utils.SITE_PASSWORD.equalsIgnoreCase(username)) {
+            Utils.setFlashMessage(req, "Invalid username. Please enter 'admin'.");
+            res.redirect(Utils.ROUTE_LOGIN);
+            return null;
+        }
+
+        //TODO:bhs - Obviously will need to handle this differently so that it applies
+        //         - generally to any method
+        res.cookie(Utils.COOKIE_PASSWORD, username);
+        res.redirect(Utils.ROUTE_NEW);
+        return null;
+    }
+
     public void beforeHandleNewGetRequest(Request req, Response res) {
-        if (req.cookie("userPass") == null ||
-                !req.cookie("userPass").equalsIgnoreCase("admin")) {
+        if (req.cookie(Utils.COOKIE_PASSWORD) == null ||
+                !req.cookie(Utils.COOKIE_PASSWORD).equalsIgnoreCase(Utils.SITE_PASSWORD)) {
             Utils.setFlashMessage(req, "Please login with the correct permission to add a post!");
-            res.redirect("/login");
+            res.redirect(Utils.ROUTE_LOGIN);
             halt();
             return;
         }

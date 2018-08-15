@@ -10,15 +10,19 @@ public class Utils {
     public static final String ROUTE_NEW = "/new";
     public static final String ROUTE_DETAIL_PREFIX = "/detail";
     public static final String ROUTE_DETAIL = ROUTE_DETAIL_PREFIX + "/:slug";
+    public static final String ROUTE_LOGIN = "/login";
 
     // Templates
     public static final String TEMPLATE_INDEX = "index.hbs";
     public static final String TEMPLATE_EDIT = "edit.hbs";
     public static final String TEMPLATE_NEW = "new.hbs";
     public static final String TEMPLATE_DETAIL = "detail.hbs";
+    public static final String TEMPLATE_LOGIN = "login.hbs";
 
-    // Keys
+    // One off
     public static final String FLASH_MESSAGE_KEY = "flash_message";
+    public static final String SITE_PASSWORD = "admin";
+    public static final String COOKIE_PASSWORD = "username";
 
     // Utility Methods
     public static void setFlashMessage(Request req, String message) {
