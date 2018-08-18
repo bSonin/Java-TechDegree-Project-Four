@@ -26,7 +26,7 @@ public class Utils {
 
     // Utility Methods
     public static void setFlashMessage(Request req, String message) {
-        req.session().attribute("FLASH_MESSAGE_KEY, message");
+        req.session().attribute(FLASH_MESSAGE_KEY, message);
     }
 
     public static String getFlashMessage(Request req) {

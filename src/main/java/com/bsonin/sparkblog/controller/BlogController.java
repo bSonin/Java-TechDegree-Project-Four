@@ -59,6 +59,7 @@ public class BlogController {
         model.put("password", Utils.SITE_PASSWORD);
         model.put("routeIndex", Utils.ROUTE_INDEX);
         model.put("routeLogin", Utils.ROUTE_LOGIN);
+        model.put("flashMessage", Utils.captureFlashMessage(req));
         return ViewResolver.prepareLoginView(req, model, Utils.TEMPLATE_LOGIN);
     }
 
@@ -87,4 +88,5 @@ public class BlogController {
             return;
         }
     }
+
 }

@@ -27,7 +27,9 @@ public class Application {
 
 
         // Define before-filters
-        before (Utils.ROUTE_NEW, (req, res) -> blogController.beforeHandleNewGetRequest(req, res));
+        before(Utils.ROUTE_NEW, (req, res) -> blogController.beforeHandleNewGetRequest(req, res));
+
+        // Define after-filters
 
         // FIXME:bhs - Need more research into why/how this is working!
         // Define routes: GET
@@ -41,7 +43,6 @@ public class Application {
         post(Utils.ROUTE_DETAIL, (req, res) -> blogController.handleDetailPostRequest(req, res));
         post(Utils.ROUTE_LOGIN, (req, res) -> blogController.handleLoginPostRequest(req, res));
 
-        // Define after-filters
 
     }
 }
