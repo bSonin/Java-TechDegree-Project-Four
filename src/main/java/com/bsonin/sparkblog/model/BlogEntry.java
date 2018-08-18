@@ -9,7 +9,6 @@ import java.util.List;
 public class BlogEntry {
     private Long id;
     private List<Comment> comments;
-    private List<Tag> tags;
     private String title;
     private String body;
     private String summary;
@@ -30,7 +29,6 @@ public class BlogEntry {
 
     private void initialize() {
         comments = new ArrayList<>();
-        tags = new ArrayList<>();
         creationDate = LocalDateTime.now();
 
     }
@@ -42,13 +40,6 @@ public class BlogEntry {
     // FIXME:bhs - Not the safest to provide mutability to ID this way
 
     public void setId(Long id) { this.id = id; }
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
-    }
 
     public List<Comment> getComments() {
         return comments;

@@ -68,9 +68,4 @@ public class BlogEntryDaoInMemoryImpl implements BlogEntryDao {
                 .findFirst()
                 .orElseThrow(NotFoundException::new);
     }
-
-    @Override
-    public boolean delete(BlogEntry entry) {
-        return entries.remove(entry);
-    }
 }

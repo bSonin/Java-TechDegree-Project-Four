@@ -72,10 +72,8 @@ public class BlogController {
             return null;
         }
 
-        //TODO:bhs - Obviously will need to handle this differently so that it applies
-        //         - generally to any method
         res.cookie(Utils.COOKIE_PASSWORD, username);
-        res.redirect(Utils.ROUTE_NEW);
+        res.redirect(Utils.ROUTE_INDEX);
         return null;
     }
 

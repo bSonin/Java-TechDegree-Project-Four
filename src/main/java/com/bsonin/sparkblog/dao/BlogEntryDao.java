@@ -14,6 +14,4 @@ public interface BlogEntryDao {
     BlogEntry findById(Long id);
 
     BlogEntry findBySlug(String slug);
-
-    boolean delete(BlogEntry entry);
 }

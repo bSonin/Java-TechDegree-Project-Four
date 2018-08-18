@@ -48,11 +48,8 @@ public class Application {
 }
 
 // STEPS FORWARD:
-// TODO:bhs - Add support for flash messages in base.hbs
 // TODO:bhs - Study and double check Utils flash message code
-// TODO:bhs   Generalize cookie check for all necessary requests (edit/delete/add)
-// TODO:bhs - Add in links for editing/delete posts
-// TODO:bhs - Expand before filter to cover these pages as well
-// TODO:bhs - Styling, tagging, messaging/error handling and anything else
+// TODO:bhs - Add in links for editing posts
+// TODO:bhs - Styling, messaging/error handling and anything else
 // TODO:bhs   -> in the requirements
 
