@@ -31,7 +31,6 @@ public class Application {
 
         // Define after-filters
 
-        // FIXME:bhs - Need more research into why/how this is working!
         // Define routes: GET
         get(Utils.ROUTE_INDEX, (req, res) -> blogController.handleIndexGetRequest(req, res));
         get(Utils.ROUTE_NEW, (req, res) -> blogController.handleNewGetRequest(req, res));
@@ -48,8 +47,8 @@ public class Application {
 }
 
 // STEPS FORWARD:
-// TODO:bhs - Study and double check Utils flash message code
 // TODO:bhs - Add in links for editing posts
+// TODO:bhs - Add dates/times to all blog post entry displays
 // TODO:bhs - Styling, messaging/error handling and anything else
-// TODO:bhs   -> in the requirements
+// TODO:bhs - Overload title partial
 

@@ -24,7 +24,7 @@ public class Utils {
     public static final String SITE_PASSWORD = "admin";
     public static final String COOKIE_PASSWORD = "username";
 
-    // Utility Methods
+    // Utility Methods for Flash Messaging
     public static void setFlashMessage(Request req, String message) {
         req.session().attribute(FLASH_MESSAGE_KEY, message);
     }

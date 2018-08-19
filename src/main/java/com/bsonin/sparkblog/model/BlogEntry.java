@@ -71,6 +71,13 @@ public class BlogEntry {
         this.creationDate = creationDate;
     }
 
+    public String getDisplayableDate() {
+        return creationDate.toString().split("T")[0];
+    }
+
+    public String getDisplayableTime() {
+        return creationDate.toString().split("T")[1];
+    }
 
     //TODO:bhs - Equals and HashCode?
 }

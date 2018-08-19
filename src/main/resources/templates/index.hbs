@@ -1,14 +1,20 @@
 {{#partial "content"}}
-    <h1>Current Blog Posts:</h1>
-    <ul>
+    <h1>Current Blog Posts</h1>
+    <ul class="entries-list">
         {{#each blogEntries}}
-            <li>
-                <a href="/detail/{{slug}}">{{title}}: {{summary}}</a>
+            <li class="entry-list-item">
+                <a class="link entry-list-title" href="/detail/{{slug}}">{{title}}</a>
+                <br/>
+                <span class="entry-list-summary">{{summary}}</span>
+                <br/>
+                <span class="date-time-line"> (created on {{displayableDate}} at {{displayableTime}})</span>
             </li>
         {{/each}}
     </ul>
     <br/>
-    <h3><a href="/new">Create a new post</a></h3>
+    <form class="form-button" method="post" action="/new">
+        <button class="button">Create a New Post</button>
+    </form>
 
 {{/partial}}
 {{> base.hbs}}

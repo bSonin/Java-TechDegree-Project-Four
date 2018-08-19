@@ -3,16 +3,25 @@
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Welcome To My Blog!</title>
-        <!--FIXME:bhs - How to get static BLOG_TITLE off of Blog class here?-->
+        <title>{{#block "title"}}Welcome To Ben's Blog!{{/block}}</title>
         <link rel="stylesheet" href="/css/main.css">
     </head>
     <body>
-        <div class="flash-message-block">
-            {{#if flashMessage}}
-                <p id="flash-message">{{flashMessage}}</p>
-            {{/if}}
+
+        <div class="top-bar">
+            <span class="header-text">Ben's Blog - Lessons in Spark Java</span>
+            <button class="header-home-button">
+                <a  class="header-home-button-link" href="/index">Return to Index</a>
+            </button>
         </div>
+
+        <div class="content-section">
+
+            {{#if flashMessage}}
+                <div class="flash-message-block">
+                    <p id="flash-message">{{flashMessage}}</p>
+                </div>
+            {{/if}}
 {{/block}}
 
 {{#block "content"}}
@@ -20,6 +29,7 @@
 {{/block}}
 
 {{#block "footer"}}
+        </div>
     </body>
     </html>
 {{/block}}

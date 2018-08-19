@@ -1,4 +1,172 @@
+
+html {
+    height: 100%;
+}
+
 body {
     background-color: darkGray;
     font-family: arial;
+    height: 100%;
 }
+
+.content-section {
+    background-color: white;
+    padding-top: 20px;
+    margin: 35px;
+    padding-bottom: 80px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-color: #8d9db6;
+    border-radius: 3px;
+    border-width: 5px;
+    border-style: solid;
+    height: 75%;
+}
+
+.top-bar {
+    width: 100%;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    position: relative;
+}
+
+.header-text {
+    position: absolute;
+    left: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #454140;
+}
+.header-home-button {
+    position: absolute;
+    right: 40px;
+    color: black;
+    font-size: 10px;
+    background-color: #92a8d1;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    border-color: #454140;
+    margin-top: 4px;
+}
+
+.header-home-button-link {
+    text-decoration: none;
+    color: #454140;
+}
+
+.top-bar {
+
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0;
+}
+
+.entries-list {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.entry-list-item {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.link {
+    text-decoration: none;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: #454140;
+}
+
+.entry-list-summary {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #454140;
+}
+
+.date-time-line {
+    text-aline: center;
+    font-size: 10px;
+    color: #454140;
+}
+
+.login-header {
+    color: #454140;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.form-password {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 150px;
+}
+
+.input-field {
+    border-radius: 3px;
+    border-color: #454140;
+    border-width: 1px;
+    width: 150px;
+    height: 20px;
+}
+
+.entry-title {
+}
+
+.entry-summary {
+}
+
+.entry-date {
+}
+
+.entry-body {
+}
+
+.entry-comment {
+}
+
+.form-button {
+    text-align: center;
+}
+
+.button {
+    text-align: center;
+    background-color: #92a8d1;
+    border-color: #454140;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 3px;
+    margin: 0;
+
+}
+
+.flash-message-block {
+    background-color: #f18973;
+    opacity: .8;
+    text-align: center;
+    padding: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+#flash-message {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Lucida Console";
+}
+
