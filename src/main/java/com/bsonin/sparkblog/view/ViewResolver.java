@@ -27,4 +27,5 @@ public class ViewResolver {
     public static String prepareLoginView(Request req, Map model, String template) {
         return new HandlebarsTemplateEngine().render(new ModelAndView(model, template));
     }
+
 }

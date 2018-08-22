@@ -1,1 +1,21 @@
+{{#partial "content"}}
+    <h1>{{entry.title}}</h1>
+    <h2>{{entry.summary}}</h2>
+    <p>{{entry.body}}</p>
+
+    <form action="" id="body" method="post">
+        <input value="{{currentTitle}}" class="input-title" type="text" placeholder="Title" name="title"/>
+        <br/>
+        <input value="{{currentSummary}}" class="input-summary" type="text" placeholder="Summary (a few words)" name="summary"/>
+        <br/>
+        <textarea id="body" class="input-body" cols="70" rows="10" placeholder="Body" name="body">{{currentBody}}</textarea>
+        <br/>
+        <button class="button">Modify Entry</button>
+    </form>
+
+    <form action="/index" method="get">
+        <button class="button">Return to Homepage</button>
+    </form>
+{{/partial}}
+
 {{> base.hbs}}

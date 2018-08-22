@@ -6,7 +6,8 @@ public class Utils {
 
     // Routes
     public static final String ROUTE_INDEX = "/index";
-    public static final String ROUTE_EDIT = "/edit";
+    public static final String ROUTE_EDIT_PREFIX = "/edit";
+    public static final String ROUTE_EDIT = ROUTE_EDIT_PREFIX + "/:slug";
     public static final String ROUTE_NEW = "/new";
     public static final String ROUTE_DETAIL_PREFIX = "/detail";
     public static final String ROUTE_DETAIL = ROUTE_DETAIL_PREFIX + "/:slug";

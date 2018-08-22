@@ -1,6 +1,12 @@
 {{#partial "content"}}
     <h1>{{entry.title}}</h1>
     <h2>{{entry.summary}}</h2>
+    <p>{{entry.body}}</p>
+
+
+    <form action="/edit/{{entry.slug}}" method="get">
+        <button class="button">Edit Blog Entry</button>
+    </form>
 
     <ul>
         {{#each entry.comments}}
@@ -13,11 +19,11 @@
     <form action="/detail/{{entry.slug}}" method="post">
         <input type="text" placeholder="Username" name="userName">
         <input type="text" placeholder="Comment" name="body">
-        <button>Add Comment</button>
+        <button class="button">Add Comment</button>
     </form>
 
     <form action="/index" method="get">
-        <button>Return to Homepage</button>
+        <button class="button">Return to Homepage</button>
     </form>
 {{/partial}}
 

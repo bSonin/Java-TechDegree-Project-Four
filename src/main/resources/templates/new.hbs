@@ -2,11 +2,14 @@
     <h1>Create a New Blog Post!</h1>
     <h3>Fill in the forms below to proceed:</h3>
 
-    <form action="/new" method="post">
-        <input type="text" placeholder="Title" name="title"/>
-        <input type="text" placeholder="Body" name="body"/>
-        <input type="text" placeholder="Summary (a few words)" name="summary"/>
-        <button>Create Post</button>
+    <form action="/new" id="body" method="post">
+        <input class="input-title" type="text" placeholder="Title" name="title"/>
+        <br/>
+        <input class="input-summary" type="text" placeholder="Summary (a few words)" name="summary"/>
+        <br/>
+        <textarea id="body" class="input-body" cols="70" rows="10" placeholder="Body" name="body"></textarea>
+        <br/>
+        <button class="button">Create Post</button>
     </form>
 {{/partial}}
 {{> base.hbs}}

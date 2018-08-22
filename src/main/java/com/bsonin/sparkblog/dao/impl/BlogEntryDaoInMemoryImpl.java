@@ -68,4 +68,13 @@ public class BlogEntryDaoInMemoryImpl implements BlogEntryDao {
                 .findFirst()
                 .orElseThrow(NotFoundException::new);
     }
+
+    public BlogEntry findByTitle(String title) {
+        for (BlogEntry entry : entries) {
+            if (title.equalsIgnoreCase(entry.getTitle())) {
+                return entry;
+            }
+        }
+        return null;
+    }
 }

@@ -27,4 +27,8 @@ public class BlogEntryService {
     public BlogEntry getEntryBySlug(String slug) {
         return blogEntryDao.findBySlug(slug);
     }
+
+    public boolean doesEntryWithTitleExist(String title) {
+        return blogEntryDao.findByTitle(title) != null;
+    }
 }

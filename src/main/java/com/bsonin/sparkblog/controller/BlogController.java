@@ -1,5 +1,6 @@
 package com.bsonin.sparkblog.controller;
 
+import com.bsonin.sparkblog.exception.NotFoundException;
 import com.bsonin.sparkblog.model.Comment;
 import com.bsonin.sparkblog.utils.Utils;
 import com.bsonin.sparkblog.dao.BlogEntryDao;
@@ -24,12 +25,15 @@ public class BlogController {
 
     public String handleIndexGetRequest (Request req, Response res) {
         Map<String,Object> model = new HashMap<>();
+        model.put("flashMessage", Utils.captureFlashMessage(req));
         model.put("blogEntries", blogEntryService.getAllBlogEntries());
         return ViewResolver.prepareIndexView(req, model, Utils.TEMPLATE_INDEX);
     }
 
     public String handleNewGetRequest(Request req, Response res) {
-        return ViewResolver.prepareNewView(req, null, Utils.TEMPLATE_NEW);
+        Map<String, Object> model = new HashMap<>();
+        model.put("flashMessage", Utils.captureFlashMessage(req));
+        return ViewResolver.prepareNewView(req, model, Utils.TEMPLATE_NEW);
     }
 
     public String handleDetailGetRequest(Request req, Response res) {
@@ -48,6 +52,22 @@ public class BlogController {
     }
 
     public String handleNewPostRequest(Request req, Response res) {
+        if (req.queryParams("title") == null || req.queryParams("title").isEmpty()
+                || req.queryParams("summary") == null || req.queryParams("summary").isEmpty()
+                || req.queryParams("body") == null || req.queryParams("body").isEmpty())
+        {
+            Utils.setFlashMessage(req, "Please fill in all fields to create a blog entry!");
+            res.redirect(Utils.ROUTE_NEW);
+            return null;
+        }
+
+        if (blogEntryService.doesEntryWithTitleExist(req.queryParams("title")))
+        {
+            Utils.setFlashMessage(req, "A blog entry already exists with that title!");
+            res.redirect(Utils.ROUTE_NEW);
+            return null;
+        }
+
         BlogEntry entry = new BlogEntry(req.queryParams("title"), req.queryParams("body"), req.queryParams("summary"));
         blogEntryService.addEntry(entry);
         res.redirect(Utils.ROUTE_INDEX);
@@ -77,7 +97,7 @@ public class BlogController {
         return null;
     }
 
-    public void beforeHandleNewGetRequest(Request req, Response res) {
+    public void beforeHandleNewOrEditGetRequest(Request req, Response res) {
         if (req.cookie(Utils.COOKIE_PASSWORD) == null ||
                 !req.cookie(Utils.COOKIE_PASSWORD).equalsIgnoreCase(Utils.SITE_PASSWORD)) {
             Utils.setFlashMessage(req, "Please login with the correct permission to add a post!");
@@ -87,4 +107,43 @@ public class BlogController {
         }
     }
 
+    public String handleNotFoundException(NotFoundException exc, Request req, Response res) {
+        Utils.setFlashMessage(req, "The blog entry you were looking for was not found!");
+        res.redirect(Utils.ROUTE_INDEX);
+        return null;
+    }
+
+    public String handleEditGetRequest(Request req, Response res) {
+        Map<String, Object> model = new HashMap<>();
+        BlogEntry entry = blogEntryService.getEntryBySlug(req.params("slug"));
+        model.put("currentTitle", entry.getTitle());
+        model.put("currentSummary", entry.getSummary());
+        model.put("currentBody", entry.getBody());
+        return ViewResolver.prepareEditView(req, model, Utils.TEMPLATE_EDIT);
+    }
+
+    public String handleEditPostRequest(Request req, Response res) {
+        if (req.queryParams("title") == null || req.queryParams("title").isEmpty()
+                || req.queryParams("summary") == null || req.queryParams("summary").isEmpty()
+                || req.queryParams("body") == null || req.queryParams("body").isEmpty())
+        {
+            Utils.setFlashMessage(req, "Please fill in all fields to create a blog entry!");
+            res.redirect(Utils.ROUTE_NEW);
+            return null;
+        }
+
+        if (blogEntryService.doesEntryWithTitleExist(req.queryParams("title")))
+        {
+            Utils.setFlashMessage(req, "A blog entry already exists with that title!");
+            res.redirect(Utils.ROUTE_NEW);
+            return null;
+        }
+
+        BlogEntry entry = blogEntryService.getEntryBySlug(req.params("slug"));
+        entry.setTitle(req.queryParams("title"));
+        entry.setBody(req.queryParams("body"));
+        entry.setSummary(req.queryParams("summary"));
+        res.redirect(Utils.ROUTE_INDEX);
+        return null;
+    }
 }

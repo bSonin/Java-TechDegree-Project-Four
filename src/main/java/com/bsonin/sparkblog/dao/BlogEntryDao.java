@@ -14,4 +14,6 @@ public interface BlogEntryDao {
     BlogEntry findById(Long id);
 
     BlogEntry findBySlug(String slug);
+
+    BlogEntry findByTitle(String title);
 }
