@@ -5,6 +5,7 @@ import com.github.slugify.Slugify;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BlogEntry {
     private Long id;
@@ -79,5 +80,23 @@ public class BlogEntry {
         return creationDate.toString().split("T")[1];
     }
 
-    //TODO:bhs - Equals and HashCode?
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BlogEntry blogEntry = (BlogEntry) o;
+        return Objects.equals(id, blogEntry.id) &&
+                Objects.equals(comments, blogEntry.comments) &&
+                Objects.equals(title, blogEntry.title) &&
+                Objects.equals(body, blogEntry.body) &&
+                Objects.equals(summary, blogEntry.summary) &&
+                Objects.equals(creationDate, blogEntry.creationDate) &&
+                Objects.equals(slug, blogEntry.slug);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, comments, title, body, summary, creationDate, slug);
+    }
 }

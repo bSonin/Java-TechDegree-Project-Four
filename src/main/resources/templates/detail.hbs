@@ -1,28 +1,33 @@
 {{#partial "content"}}
-    <h1>{{entry.title}}</h1>
-    <h2>{{entry.summary}}</h2>
-    <p>{{entry.body}}</p>
+
+    <div class="center">
+        <h1>{{entry.title}}</h1>
+        <h3>{{entry.summary}}</h3>
+    </div>
+    <p class="reveal-whitespace">{{entry.body}}</p>
 
 
-    <form action="/edit/{{entry.slug}}" method="get">
+    <form class="center" action="/edit/{{entry.slug}}" method="get">
         <button class="button">Edit Blog Entry</button>
     </form>
 
     <ul>
         {{#each entry.comments}}
             <li>
-                <p>{{body}} - {{userName}} ({{creationDate}})</p>
+                <span class="entry-comment">{{body}} - {{userName}} ({{creationDate}})</span>
             </li>
         {{/each}}
     </ul>
 
     <form action="/detail/{{entry.slug}}" method="post">
-        <input type="text" placeholder="Username" name="userName">
-        <input type="text" placeholder="Comment" name="body">
+        <input class="input-field" type="text" placeholder="Username" name="userName">
+        <input class="input-field" type="text" placeholder="Comment" name="body">
+        <br/>
         <button class="button">Add Comment</button>
     </form>
 
-    <form action="/index" method="get">
+
+    <form class="downstream center" action="/index" method="get">
         <button class="button">Return to Homepage</button>
     </form>
 {{/partial}}

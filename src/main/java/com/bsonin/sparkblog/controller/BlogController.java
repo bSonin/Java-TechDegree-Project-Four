@@ -38,6 +38,7 @@ public class BlogController {
 
     public String handleDetailGetRequest(Request req, Response res) {
         Map<String, Object> model = new HashMap<>();
+        model.put("flashMessage", Utils.captureFlashMessage(req));
         model.put("entry", blogEntryService.getEntryBySlug(req.params("slug")));
         return ViewResolver.prepareDetailView(req, model, Utils.TEMPLATE_DETAIL);
     }
@@ -46,6 +47,18 @@ public class BlogController {
         String username = req.queryParams("userName");
         String commentBody = req.queryParams("body");
         BlogEntry entry = blogEntryService.getEntryBySlug(req.params("slug"));
+
+        if (commentBody == null || commentBody.isEmpty())
+        {
+            Utils.setFlashMessage(req, "You must actually add a comment to create a comment!");
+            res.redirect(Utils.ROUTE_DETAIL_PREFIX + "/" + entry.getSlug());
+            return null;
+        }
+
+        if (username == null || username.isEmpty()) {
+            username = "Anonymous";
+        }
+
         entry.getComments().add(new Comment(entry, username, commentBody));
         res.redirect(Utils.ROUTE_DETAIL_PREFIX + "/" + entry.getSlug());
         return null;
@@ -61,7 +74,8 @@ public class BlogController {
             return null;
         }
 
-        if (blogEntryService.doesEntryWithTitleExist(req.queryParams("title")))
+        BlogEntry possibleEntry = blogEntryService.getEntryByTitle(req.queryParams("title"));
+        if (possibleEntry != null)
         {
             Utils.setFlashMessage(req, "A blog entry already exists with that title!");
             res.redirect(Utils.ROUTE_NEW);
@@ -119,6 +133,7 @@ public class BlogController {
         model.put("currentTitle", entry.getTitle());
         model.put("currentSummary", entry.getSummary());
         model.put("currentBody", entry.getBody());
+        model.put("flashMessage", Utils.captureFlashMessage(req));
         return ViewResolver.prepareEditView(req, model, Utils.TEMPLATE_EDIT);
     }
 
@@ -132,14 +147,15 @@ public class BlogController {
             return null;
         }
 
-        if (blogEntryService.doesEntryWithTitleExist(req.queryParams("title")))
+        BlogEntry possibleEntry = blogEntryService.getEntryByTitle(req.queryParams("title"));
+        BlogEntry entry = blogEntryService.getEntryBySlug(req.params("slug"));
+        if (possibleEntry != null && !possibleEntry.equals(entry))
         {
             Utils.setFlashMessage(req, "A blog entry already exists with that title!");
-            res.redirect(Utils.ROUTE_NEW);
+            res.redirect(Utils.ROUTE_EDIT_PREFIX + "/" + entry.getSlug());
             return null;
         }
 
-        BlogEntry entry = blogEntryService.getEntryBySlug(req.params("slug"));
         entry.setTitle(req.queryParams("title"));
         entry.setBody(req.queryParams("body"));
         entry.setSummary(req.queryParams("summary"));

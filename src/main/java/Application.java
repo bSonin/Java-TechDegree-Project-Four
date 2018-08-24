@@ -54,12 +54,7 @@ public class Application {
 
 // STEPS FORWARD:
 // TODO:bhs - Styling -> There are requirements for this...
-// TODO:bhs - Note, if you change title, slug doesn't change, causes bug of duplicate slug possibility -> Necessary to fix?
-// TODO:bhs - Enhance The three sample posts...
 // TODO:bhs - Overload title partial
-// TODO:bhs - Clear up commment formatting (name?)
-// TODO:bhs - Overhaul edit, new and detail styling
 // TODO:bhs - Quickly go over for massive duplicate code (e.g. new/edit validation) and clean up.
 // TODO:bhs -     Make this at least sort of respectable
 // TODO:bhs - Clean comments
-// TODO:bhs - THATS IT. FINISH in 2 hours more max.
