@@ -5,13 +5,13 @@ import spark.Request;
 public class Utils {
 
     // Routes
-    public static final String ROUTE_INDEX = "/index";
-    public static final String ROUTE_EDIT_PREFIX = "/edit";
+    public static final String ROUTE_INDEX = "/blog";
+    public static final String ROUTE_EDIT_PREFIX = "/entry/edit";
     public static final String ROUTE_EDIT = ROUTE_EDIT_PREFIX + "/:slug";
-    public static final String ROUTE_NEW = "/new";
-    public static final String ROUTE_DETAIL_PREFIX = "/detail";
+    public static final String ROUTE_NEW = "/entry/new";
+    public static final String ROUTE_DETAIL_PREFIX = "/entry/detail";
     public static final String ROUTE_DETAIL = ROUTE_DETAIL_PREFIX + "/:slug";
-    public static final String ROUTE_LOGIN = "/login";
+    public static final String ROUTE_LOGIN = "/blog/login";
 
     // Templates
     public static final String TEMPLATE_INDEX = "index.hbs";
@@ -48,6 +48,7 @@ public class Utils {
         return message;
     }
 
+    // Utility methods for Strings
     public static boolean isPresent(String var) {
         return var != null && !var.isEmpty();
     }

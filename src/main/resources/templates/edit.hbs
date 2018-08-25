@@ -4,7 +4,7 @@
 
     <h1 class="center">Edit: {{currentTitle}}</h1>
 
-    <form class="center" action="" id="body" method="post">
+    <form class="center" id="body" method="post">
         <input value="{{currentTitle}}" class="input-title" type="text" placeholder="Title" name="title"/>
         <br/>
         <input value="{{currentSummary}}" class="input-summary" type="text" placeholder="Summary (a few words)" name="summary"/>
@@ -14,7 +14,7 @@
         <button class="button">Modify Entry</button>
     </form>
 
-    <form class="downstream center" action="/index" method="get">
+    <form class="downstream center" action="/blog" method="get">
         <button class="button">Return to Homepage</button>
     </form>
 {{/partial}}

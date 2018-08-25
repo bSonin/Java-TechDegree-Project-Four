@@ -5,7 +5,7 @@
     <ul class="entries-list">
         {{#each blogEntries}}
             <li class="entry-list-item">
-                <a class="link entry-list-title" href="/detail/{{slug}}">{{title}}</a>
+                <a class="link entry-list-title" href="/entry/detail/{{slug}}">{{title}}</a>
                 <br/>
                 <span class="entry-list-summary">{{summary}}</span>
                 <br/>
@@ -14,7 +14,7 @@
         {{/each}}
     </ul>
     <br/>
-    <form class="center" method="get" action="/new">
+    <form class="center" method="get" action="/entry/new">
         <button class="button">Create a New Post</button>
     </form>
 

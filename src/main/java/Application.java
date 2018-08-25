@@ -52,6 +52,3 @@ public class Application {
     }
 }
 
-// STEPS FORWARD:
-// TODO:bhs - Styling -> There are requirements for this...
-// TODO:bhs - Clean comments

@@ -11,18 +11,15 @@ public class BlogEntryService {
 
     private BlogEntryDao blogEntryDao;
 
-    public BlogEntryService(BlogEntryDao dao)
-    {
+    public BlogEntryService(BlogEntryDao dao) {
         this.blogEntryDao = dao;
     }
 
-    public boolean addEntry(BlogEntry entry)
-    {
+    public boolean addEntry(BlogEntry entry) {
         return blogEntryDao.add(entry);
     }
 
-    public List<BlogEntry> getAllBlogEntries()
-    {
+    public List<BlogEntry> getAllBlogEntries() {
         return blogEntryDao.findAll();
     }
 

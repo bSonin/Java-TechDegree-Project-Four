@@ -15,11 +15,27 @@ public class Comment {
         creationDate = LocalDateTime.now();
     }
 
-    public BlogEntry getBlogEntry() { return blogEntry; }
+    public BlogEntry getBlogEntry() {
+        return blogEntry;
+    }
 
-    public String getUserName() { return userName; }
+    public String getUserName() {
+        return userName;
+    }
 
-    public String getBody() { return body; }
+    public String getBody() {
+        return body;
+    }
 
-    public LocalDateTime getCreationDate() { return creationDate; }
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public String getDisplayableDate() {
+        return creationDate.toString().split("T")[0];
+    }
+
+    public String getDisplayableTime() {
+        return creationDate.toString().split("T")[1];
+    }
 }

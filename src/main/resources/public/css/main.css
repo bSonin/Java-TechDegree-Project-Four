@@ -55,10 +55,6 @@ body {
     color: #454140;
 }
 
-.top-bar {
-
-}
-
 h1 {
     font-size: 36px;
     font-weight: bold;
@@ -102,6 +98,10 @@ h1 {
     color: #454140;
 }
 
+.pull-up {
+    margin-bottom: -8px;
+}
+
 .login-header {
     color: #454140;
     font-size: 20px;
@@ -123,16 +123,8 @@ h1 {
     height: 20px;
 }
 
-.entry-title {
-}
-
-.entry-summary {
-}
-
-.entry-date {
-}
-
-.entry-body {
+.long {
+    width: 200px !important;
 }
 
 .entry-comment {

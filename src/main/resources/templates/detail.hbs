@@ -3,33 +3,34 @@
 {{#partial "content"}}
 
     <div class="center">
-        <h1>{{entry.title}}</h1>
+        <h1 class="pull-up">{{entry.title}}</h1>
+        <span class="date-time-line">({{entry.displayableDate}} at {{entry.displayableTime}})</span>
         <h3>{{entry.summary}}</h3>
     </div>
     <p class="reveal-whitespace">{{entry.body}}</p>
 
 
-    <form class="center" action="/edit/{{entry.slug}}" method="get">
+    <form class="center" action="/entry/edit/{{entry.slug}}" method="get">
         <button class="button">Edit Blog Entry</button>
     </form>
 
     <ul>
         {{#each entry.comments}}
             <li>
-                <span class="entry-comment">{{body}} - {{userName}} ({{creationDate}})</span>
+                <span class="entry-comment">{{body}} - {{userName}} ({{displayableDate}} at {{displayableTime}})</span>
             </li>
         {{/each}}
     </ul>
 
-    <form action="/detail/{{entry.slug}}" method="post">
-        <input class="input-field" type="text" placeholder="Username" name="userName">
+    <form action="/entry/detail/{{entry.slug}}" method="post">
+        <input class="input-field long" type="text" placeholder="Name - blank for Anonymous" name="userName">
         <input class="input-field" type="text" placeholder="Comment" name="body">
         <br/>
         <button class="button">Add Comment</button>
     </form>
 
 
-    <form class="downstream center" action="/index" method="get">
+    <form class="downstream center" action="/blog" method="get">
         <button class="button">Return to Homepage</button>
     </form>
 {{/partial}}
