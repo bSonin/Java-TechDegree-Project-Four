@@ -48,4 +48,8 @@ public class Utils {
         return message;
     }
 
+    public static boolean isPresent(String var) {
+        return var != null && !var.isEmpty();
+    }
+
 }

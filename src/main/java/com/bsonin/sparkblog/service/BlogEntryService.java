@@ -2,6 +2,8 @@ package com.bsonin.sparkblog.service;
 
 import com.bsonin.sparkblog.dao.BlogEntryDao;
 import com.bsonin.sparkblog.model.BlogEntry;
+import com.bsonin.sparkblog.utils.Utils;
+import spark.Request;
 
 import java.util.List;
 
@@ -30,5 +32,11 @@ public class BlogEntryService {
 
     public BlogEntry getEntryByTitle(String title) {
         return blogEntryDao.findByTitle(title);
+    }
+
+    public boolean canQueryParamsPopulateEntry(Request req) {
+        return Utils.isPresent(req.queryParams("title")) &&
+                Utils.isPresent(req.queryParams("summary")) &&
+                Utils.isPresent(req.queryParams("body"));
     }
 }

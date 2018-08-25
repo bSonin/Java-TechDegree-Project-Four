@@ -48,14 +48,14 @@ public class BlogController {
         String commentBody = req.queryParams("body");
         BlogEntry entry = blogEntryService.getEntryBySlug(req.params("slug"));
 
-        if (commentBody == null || commentBody.isEmpty())
+        if (!Utils.isPresent(commentBody))
         {
             Utils.setFlashMessage(req, "You must actually add a comment to create a comment!");
             res.redirect(Utils.ROUTE_DETAIL_PREFIX + "/" + entry.getSlug());
             return null;
         }
 
-        if (username == null || username.isEmpty()) {
+        if (!Utils.isPresent(username)) {
             username = "Anonymous";
         }
 
@@ -65,9 +65,7 @@ public class BlogController {
     }
 
     public String handleNewPostRequest(Request req, Response res) {
-        if (req.queryParams("title") == null || req.queryParams("title").isEmpty()
-                || req.queryParams("summary") == null || req.queryParams("summary").isEmpty()
-                || req.queryParams("body") == null || req.queryParams("body").isEmpty())
+        if (!blogEntryService.canQueryParamsPopulateEntry(req))
         {
             Utils.setFlashMessage(req, "Please fill in all fields to create a blog entry!");
             res.redirect(Utils.ROUTE_NEW);
@@ -138,17 +136,15 @@ public class BlogController {
     }
 
     public String handleEditPostRequest(Request req, Response res) {
-        if (req.queryParams("title") == null || req.queryParams("title").isEmpty()
-                || req.queryParams("summary") == null || req.queryParams("summary").isEmpty()
-                || req.queryParams("body") == null || req.queryParams("body").isEmpty())
+        BlogEntry entry = blogEntryService.getEntryBySlug(req.params("slug"));
+        if (!blogEntryService.canQueryParamsPopulateEntry(req))
         {
             Utils.setFlashMessage(req, "Please fill in all fields to create a blog entry!");
-            res.redirect(Utils.ROUTE_NEW);
+            res.redirect(Utils.ROUTE_EDIT_PREFIX + "/" + entry.getSlug());
             return null;
         }
 
         BlogEntry possibleEntry = blogEntryService.getEntryByTitle(req.queryParams("title"));
-        BlogEntry entry = blogEntryService.getEntryBySlug(req.params("slug"));
         if (possibleEntry != null && !possibleEntry.equals(entry))
         {
             Utils.setFlashMessage(req, "A blog entry already exists with that title!");

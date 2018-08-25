@@ -54,6 +54,4 @@ public class Application {
 
 // STEPS FORWARD:
 // TODO:bhs - Styling -> There are requirements for this...
-// TODO:bhs - Quickly go over for massive duplicate code (e.g. new/edit validation) and clean up.
-// TODO:bhs -     Make this at least sort of respectable
 // TODO:bhs - Clean comments
