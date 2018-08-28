@@ -5,7 +5,9 @@ import spark.Request;
 public class Utils {
 
     // Routes
-    public static final String ROUTE_INDEX = "/blog";
+    public static final String ROUTE_TOP = "/";
+    public static final String ROUTE_INDEX = "/index";
+    public static final String ROUTE_BLOG = "/blog";
     public static final String ROUTE_EDIT_PREFIX = "/entry/edit";
     public static final String ROUTE_EDIT = ROUTE_EDIT_PREFIX + "/:slug";
     public static final String ROUTE_NEW = "/entry/new";
@@ -14,7 +16,7 @@ public class Utils {
     public static final String ROUTE_LOGIN = "/blog/login";
 
     // Templates
-    public static final String TEMPLATE_INDEX = "index.hbs";
+    public static final String TEMPLATE_BLOG = "index.hbs";
     public static final String TEMPLATE_EDIT = "edit.hbs";
     public static final String TEMPLATE_NEW = "new.hbs";
     public static final String TEMPLATE_DETAIL = "detail.hbs";

@@ -27,7 +27,7 @@ public class BlogController {
         Map<String,Object> model = new HashMap<>();
         model.put("flashMessage", Utils.captureFlashMessage(req));
         model.put("blogEntries", blogEntryService.getAllBlogEntries());
-        return ViewResolver.prepareIndexView(req, model, Utils.TEMPLATE_INDEX);
+        return ViewResolver.prepareIndexView(req, model, Utils.TEMPLATE_BLOG);
     }
 
     public String handleNewGetRequest(Request req, Response res) {
@@ -82,14 +82,14 @@ public class BlogController {
 
         BlogEntry entry = new BlogEntry(req.queryParams("title"), req.queryParams("body"), req.queryParams("summary"));
         blogEntryService.addEntry(entry);
-        res.redirect(Utils.ROUTE_INDEX);
+        res.redirect(Utils.ROUTE_BLOG);
         return null;
     }
 
     public String handleLoginGetRequest(Request req, Response res) {
         Map<String, Object> model = new HashMap<>();
         model.put("password", Utils.SITE_PASSWORD);
-        model.put("routeIndex", Utils.ROUTE_INDEX);
+        model.put("routeBlog", Utils.ROUTE_BLOG);
         model.put("routeLogin", Utils.ROUTE_LOGIN);
         model.put("flashMessage", Utils.captureFlashMessage(req));
         return ViewResolver.prepareLoginView(req, model, Utils.TEMPLATE_LOGIN);
@@ -105,15 +105,16 @@ public class BlogController {
         }
 
         res.cookie(Utils.COOKIE_PASSWORD, username);
-        res.redirect(Utils.ROUTE_INDEX);
+        res.redirect(Utils.ROUTE_BLOG);
         return null;
     }
 
-    public void beforeHandleNewOrEditGetRequest(Request req, Response res) {
+    public void beforeHandleNewOrEditGetRequest(Request req, Response res, String uri) {
         if (req.cookie(Utils.COOKIE_PASSWORD) == null ||
                 !req.cookie(Utils.COOKIE_PASSWORD).equalsIgnoreCase(Utils.SITE_PASSWORD)) {
             Utils.setFlashMessage(req, "Please login with the correct permission to add a post!");
             res.redirect(Utils.ROUTE_LOGIN);
+            req.attribute("destination", uri);
             halt();
             return;
         }
@@ -121,7 +122,7 @@ public class BlogController {
 
     public String handleNotFoundException(NotFoundException exc, Request req, Response res) {
         Utils.setFlashMessage(req, "The blog entry you were looking for was not found!");
-        res.redirect(Utils.ROUTE_INDEX);
+        res.redirect(Utils.ROUTE_BLOG);
         return null;
     }
 
@@ -155,7 +156,7 @@ public class BlogController {
         entry.setTitle(req.queryParams("title"));
         entry.setBody(req.queryParams("body"));
         entry.setSummary(req.queryParams("summary"));
-        res.redirect(Utils.ROUTE_INDEX);
+        res.redirect(Utils.ROUTE_BLOG);
         return null;
     }
 }

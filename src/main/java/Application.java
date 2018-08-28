@@ -28,13 +28,15 @@ public class Application {
 
 
         // Define before-filters
-        before(Utils.ROUTE_NEW, (req, res) -> blogController.beforeHandleNewOrEditGetRequest(req, res));
-        before(Utils.ROUTE_EDIT, (req, res) -> blogController.beforeHandleNewOrEditGetRequest(req, res));
+        before(Utils.ROUTE_NEW, (req, res) -> blogController.beforeHandleNewOrEditGetRequest(req, res, Utils.ROUTE_NEW));
+        before(Utils.ROUTE_EDIT, (req, res) -> blogController.beforeHandleNewOrEditGetRequest(req, res, Utils.ROUTE_EDIT));
 
         // Define after-filters
 
         // Define routes: GET
+        get(Utils.ROUTE_TOP, (req, res) -> blogController.handleIndexGetRequest(req, res));
         get(Utils.ROUTE_INDEX, (req, res) -> blogController.handleIndexGetRequest(req, res));
+        get(Utils.ROUTE_BLOG, (req, res) -> blogController.handleIndexGetRequest(req, res));
         get(Utils.ROUTE_NEW, (req, res) -> blogController.handleNewGetRequest(req, res));
         get(Utils.ROUTE_DETAIL, (req, res) -> blogController.handleDetailGetRequest(req, res));
         get(Utils.ROUTE_LOGIN, (req, res) -> blogController.handleLoginGetRequest(req, res));
