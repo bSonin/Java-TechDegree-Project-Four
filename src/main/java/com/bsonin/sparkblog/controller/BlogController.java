@@ -105,6 +105,7 @@ public class BlogController {
         }
 
         res.cookie(Utils.COOKIE_PASSWORD, username);
+        Utils.setFlashMessage(req,"Sorry for this initial redirect! You're now logged in and can move about freely!");
         res.redirect(Utils.ROUTE_BLOG);
         return null;
     }
