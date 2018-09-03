@@ -109,12 +109,11 @@ public class BlogController {
         return null;
     }
 
-    public void beforeHandleNewOrEditGetRequest(Request req, Response res, String uri) {
+    public void beforeHandleNewOrEditGetRequest(Request req, Response res) {
         if (req.cookie(Utils.COOKIE_PASSWORD) == null ||
                 !req.cookie(Utils.COOKIE_PASSWORD).equalsIgnoreCase(Utils.SITE_PASSWORD)) {
             Utils.setFlashMessage(req, "Please login with the correct permission to add a post!");
             res.redirect(Utils.ROUTE_LOGIN);
-            req.attribute("destination", uri);
             halt();
             return;
         }
@@ -158,5 +157,12 @@ public class BlogController {
         entry.setSummary(req.queryParams("summary"));
         res.redirect(Utils.ROUTE_BLOG);
         return null;
+    }
+
+    public void afterAddCookieIfPresent(Request req, Response res) {
+        if (req.cookie(Utils.COOKIE_PASSWORD) != null) {
+            res.removeCookie(Utils.COOKIE_PASSWORD);
+            res.cookie(Utils.COOKIE_PASSWORD, Utils.SITE_PASSWORD);
+        }
     }
 }

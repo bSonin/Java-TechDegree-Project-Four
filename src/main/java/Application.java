@@ -28,10 +28,11 @@ public class Application {
 
 
         // Define before-filters
-        before(Utils.ROUTE_NEW, (req, res) -> blogController.beforeHandleNewOrEditGetRequest(req, res, Utils.ROUTE_NEW));
-        before(Utils.ROUTE_EDIT, (req, res) -> blogController.beforeHandleNewOrEditGetRequest(req, res, Utils.ROUTE_EDIT));
+        before(Utils.ROUTE_NEW, (req, res) -> blogController.beforeHandleNewOrEditGetRequest(req, res));
+        before(Utils.ROUTE_EDIT, (req, res) -> blogController.beforeHandleNewOrEditGetRequest(req, res));
 
         // Define after-filters
+        after((req, res) -> blogController.afterAddCookieIfPresent(req, res));
 
         // Define routes: GET
         get(Utils.ROUTE_TOP, (req, res) -> blogController.handleIndexGetRequest(req, res));
